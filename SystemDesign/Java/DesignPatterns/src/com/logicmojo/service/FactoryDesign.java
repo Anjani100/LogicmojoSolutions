@@ -46,20 +46,26 @@ class MiFactoryMethodClass {
 class MiModelFactoryImpl {
     public static MiModel produceMobile(String model) {
         MiModel mobile = MiFactoryMethodClass.getInstance(model);
-        mobile.CPU();
-        mobile.RAM();
-        mobile.Price();
         return mobile;
-    }
-
-    public static void main(String[] args) {
-        MiModel MiBoltMobile = produceMobile("MiBolt");
-        MiModel MiFireMobile = produceMobile("MiFire");
     }
 }
 
-public abstract class MiModel {
+abstract class MiModel {
     public abstract void CPU();
     public abstract void RAM();
     public abstract void Price();
+}
+
+public class FactoryDesign {
+    public static void main(String[] args) {
+        MiModel MiBoltMobile = MiModelFactoryImpl.produceMobile("MiBolt");
+        MiBoltMobile.CPU();
+        MiBoltMobile.RAM();
+        MiBoltMobile.Price();
+
+        MiModel MiFireMobile = MiModelFactoryImpl.produceMobile("MiFire");
+        MiFireMobile.CPU();
+        MiFireMobile.RAM();
+        MiFireMobile.Price();
+    }
 }
